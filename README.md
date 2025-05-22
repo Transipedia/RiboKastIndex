@@ -29,7 +29,7 @@ If the environment is not already created, follow these steps to create it:
 1. **Install Miniconda or Conda** if it's not already installed:
    - [Miniconda Installation Guide](https://docs.conda.io/en/latest/miniconda.html)
 
-2. **Create the environment** from the **Ribodocs.yaml** file:
+2. **Create the environment** from the **RiboKastIndex.yaml** file:
    ```bash
    conda env create -f /path/to/RS_Framed_kmers/Ribodocs.yaml
    ```
@@ -181,4 +181,3 @@ mode: "phase"
 kamratImg: "/data/tools/KaMRaT/KaMRaT.sif"
 
 ```
->>>>>>> cdac8dd (Initial commit)
