@@ -1,0 +1,104 @@
+# -----------------------------------------------------------------
+#                      Project Configuration
+# -----------------------------------------------------------------
+# Project Name
+project_name: "Pancreas ribosome profiling"
+
+# -----------------------------------------------------------------
+#                      Path Settings
+# -----------------------------------------------------------------
+paths:
+  local_path: "/store/EQUIPES/SSFA/MEMBERS/safa.maddouri/RiboFramedKmers/"
+  ribodoc_kmerIndex_tools: "/store/EQUIPES/SSFA/MEMBERS/safa.maddouri/RiboFramedKmers/tools/"
+  results_path: "/store/EQUIPES/SSFA/MEMBERS/safa.maddouri/RiboFramedKmers/RESULTS/"
+  stats_path: "/store/EQUIPES/SSFA/MEMBERS/safa.maddouri/RiboFramedKmers/stats/"
+  logs_path: "/store/EQUIPES/SSFA/MEMBERS/safa.maddouri/RiboFramedKmers/logs/"
+  snakemake_log_path: "/store/EQUIPES/SSFA/MEMBERS/safa.maddouri/RiboFramedKmers/.snakemake/log/"
+  fastq_path: "/store/EQUIPES/SSFA/MEMBERS/safa.maddouri/RiboFramedKmers/fastq/"
+  conda_env: "/store/EQUIPES/SSFA/MEMBERS/safa.maddouri/RiboFramedKmers/Ribodocs.yaml"
+
+# -----------------------------------------------------------------
+#                      Reference Files
+# -----------------------------------------------------------------
+# Genome/Transcriptome FASTA file for alignment
+fasta: "human.fa"
+
+# GFF file with genome/transcriptome annotations
+gff: "human.gff3"
+
+# FASTA file for sequences to exclude (optional)
+fasta_outRNA: "rRNA.fasta"
+
+# -----------------------------------------------------------------
+#                      Adapter Trimming Settings
+# -----------------------------------------------------------------
+# Are adapters already removed? ('yes' or 'no')
+already_trimmed: "no"
+
+# Adapter sequence for trimming (leave empty if unknown)
+# Adapter sequence (Example sequence for Illumina TruSeq): "AGATCGGAAGAGCACACGTCTGAACTCCAGTCA")
+adapt_sequence: "AGATCGGAAGAGCACACGTCTGAACTCCAGTCA"
+
+#adapt_sequence: ""
+
+# -----------------------------------------------------------------
+#                      Length Selection for Profiling
+# -----------------------------------------------------------------
+# Minimum read length for ribosome profiling
+readsLength_min: "25"
+
+# Maximum read length for ribosome profiling
+readsLength_max: "35"
+
+# -----------------------------------------------------------------
+#                      GFF File Settings
+# -----------------------------------------------------------------
+# CDS feature name in GFF file (e.g., "CDS")
+gff_cds_feature: "CDS"
+
+# Transcript feature name in GFF file (e.g., "mRNA" or "transcript")
+gff_mRNA_feature: "mRNA"
+
+# 5' UTR feature name in GFF file
+gff_5UTR_feature: "five_prime_UTR"
+
+# Attribute linking CDS to its parent transcript (usually "Parent")
+gff_parent_attribut: "Parent"
+
+# Attribute containing feature name (e.g., 'Name')
+gff_name_attribut: "Name"
+
+# -----------------------------------------------------------------
+#                      riboWaltz Analysis Settings
+# -----------------------------------------------------------------
+# riboWaltz configuration for periodicity analysis
+
+# Bases to look before the start and after the stop (UTR regions)
+window_utr: "30"
+
+# Bases to look after the start and before the stop (CDS regions)
+window_cds: "90"
+
+# -----------------------------------------------------------------
+#                      Optional UTR Coverage Calculation
+# -----------------------------------------------------------------
+# Should UTR coverage be calculated? ('yes' or 'no')
+UTR: "no"
+
+# 3' UTR feature name in GFF file
+gff_3UTR_feature: "three_prime_UTR"
+
+# -----------------------------------------------------------------
+#                      K-mer Index Construction Settings
+# -----------------------------------------------------------------
+# Path to joinCounts
+pathJoinCounts: "$PATH:/data/work/I2BC/safa.maddouri/tools/dekupl-joinCounts"
+
+# Size of the K-mers to be analyzed
+kmerSize: "25"
+
+# Mode for K-mer analysis ('normal' or 'phase')
+mode: "phase"
+
+# Path to KaMRaT Singularity image
+kamratImg: "/store/EQUIPES/SSFA/daniel.shared/Bin/KaMRaT.sif"
