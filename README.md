@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # RiboKastIndex
 Makes k-mer indexes from ribo-seq data
 =======
