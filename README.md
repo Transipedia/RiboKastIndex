@@ -1,8 +1,6 @@
 # RiboKastIndex
 Makes k-mer indexes from ribo-seq data
 =======
-# RiboKastIndex
-
 ## Introduction
 
 **RiboKastIndex** is a bioinformatics workflow designed for processing Ribo-seq data.  
