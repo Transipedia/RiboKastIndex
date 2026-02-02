@@ -177,97 +177,73 @@ This ensures that k-mers are cut consistently with the 3-nt reading frame.
 
 
 ```yaml
-# ===============================================================
-# RiboKastIndex - Configuration
-# ===============================================================
-
+# -----------------------------------------------------------------
+#                      RiboKastIndex Configuration
+# -----------------------------------------------------------------
 project_name: "RiboKastIndex"
 
-# ---------------------------------------------------------------
-# Paths
-# ---------------------------------------------------------------
-# local_path is the project root directory.
-# All paths below are relative to local_path, except kamratImg (absolute path).
+# -----------------------------------------------------------------
+#                      Path Settings
+# -----------------------------------------------------------------
 paths:
+  # Root directory of the project (write it once)
   local_path: "/store/EQUIPES/SSFA/MEMBERS/safa.maddouri/RiboKastIndex_test/"
 
-  tools_dir: "tools/"
-  results_dir: "RESULTS/"
-  stats_dir: "stats/"
-  logs_dir: "logs/"
-  snakemake_log_dir: ".snakemake/log/"
-  fastq_dir: "fastq/"
+  # Everything below is relative to local_path
+  RibokastIndex_tools: "tools/"
+  results_path: "RESULTS/"
+  stats_path: "stats/"
+  logs_path: "logs/"
+  snakemake_log_path: ".snakemake/log/"
+  fastq_path: "fastq/"
+  conda_env: "RiboKastIndex.yaml"
 
-  # Conda environment YAML file used to create the environment
-  conda_env_file: "RiboKastIndex.yaml"
+# -----------------------------------------------------------------
+#                      Reference Files
+# -----------------------------------------------------------------
+fasta: "human.fa"
+gff: "human.gff3"
+fasta_outRNA: "rRNA.fasta"
 
-# ---------------------------------------------------------------
-# Reference files
-# ---------------------------------------------------------------
-# These are typically placed in local_path/ (or give absolute paths).
-reference:
-  fasta: "human.fa"
-  gff: "human.gff3"
-  outRNA_fasta: "rRNA.fasta"
+# -----------------------------------------------------------------
+#                      Adapter Trimming Settings
+# -----------------------------------------------------------------
+already_trimmed: "no"
+adapt_sequence: ""
 
-# ---------------------------------------------------------------
-# Adapter trimming
-# ---------------------------------------------------------------
-trimming:
-  already_trimmed: false          # true if FASTQ files are already trimmed
-  adapter_sequence: ""            # if empty: use adapter lists (recommended)
+# -----------------------------------------------------------------
+#                      Length Selection for Profiling
+# -----------------------------------------------------------------
+readsLength_min: "25"
+readsLength_max: "35"
 
-# ---------------------------------------------------------------
-# Read length selection
-# ---------------------------------------------------------------
-read_length:
-  min: 25
-  max: 35
+# -----------------------------------------------------------------
+#                      GFF File Settings
+# -----------------------------------------------------------------
+gff_cds_feature: "CDS"
+gff_mRNA_feature: "mRNA"
+gff_5UTR_feature: "five_prime_UTR"
+gff_parent_attribut: "Parent"
+gff_name_attribut: "Name"
 
-# ---------------------------------------------------------------
-# GFF parsing settings
-# ---------------------------------------------------------------
-gff_features:
-  cds_feature: "CDS"
-  mrna_feature: "mRNA"
-  utr5_feature: "five_prime_UTR"
-  parent_attribute: "Parent"
-  name_attribute: "Name"
+# -----------------------------------------------------------------
+#                      riboWaltz Analysis Settings
+# -----------------------------------------------------------------
+kmercount_pct_threshold: "60"
 
-# ---------------------------------------------------------------
-# riboWaltz settings
-# ---------------------------------------------------------------
-ribowaltz:
-  kmercount_pct_threshold: 60     # keep read lengths representing >=60% of reads
+# -----------------------------------------------------------------
+#                      K-mer Index Construction Settings
+# -----------------------------------------------------------------
+pathJoinCounts: "$PATH:/data/work/I2BC/safa.maddouri/tools/dekupl-joinCounts"
 
-# ---------------------------------------------------------------
-# K-mer counting / index building
-# ---------------------------------------------------------------
-kmer_index:
-  # JoinCounts binary path (added to PATH in the workflow)
-  pathJoinCounts: "$PATH:/data/work/I2BC/safa.maddouri/tools/dekupl-joinCounts"
+kmerSize: "25"
+mode: "phase"          # normal | phase
 
-  kmer_size: 25
+forced_phase: 12
+#forced_phase: null
 
-  # mode:
-  #   - normal: standard k-mer counting
-  #   - phase : phase-aware mode (uses riboWaltz frame/psite information)
-  mode: "phase"
-
-  # forced_phase:
-  #   - set to null to not force a frame
-  #   - set to 0/1/2 (or your convention) to force a specific frame
-  forced_phase: 12   # set to null to disable
-  # forced_phase: null
-
-# ---------------------------------------------------------------
-# KaMRaT settings
-# ---------------------------------------------------------------
-kamrat:
-  normalize: true
-  nfbase: 1000000
-
-  # KaMRaT container image (Apptainer/Singularity)
-  kamratImg: "/store/EQUIPES/SSFA/MEMBERS/safa.maddouri/KaMRaT.sif"
+kamrat_normalize: true
+kamrat_nfbase: 1000000
+kamratImg: "/store/EQUIPES/SSFA/MEMBERS/safa.maddouri/KaMRaT.sif"
 
 ```
