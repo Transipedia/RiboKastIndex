@@ -1,0 +1,70 @@
+# -----------------------------------------------------------------
+#                      RiboKastIndex Configuration
+# -----------------------------------------------------------------
+project_name: "RiboKastIndex"
+
+# -----------------------------------------------------------------
+#                      Path Settings
+# -----------------------------------------------------------------
+paths:
+  # Root directory of the project (write it once)
+  local_path: "/store/EQUIPES/SSFA/MEMBERS/safa.maddouri/RiboKastIndex_test/"
+
+  # Everything below is relative to local_path
+  RibokastIndex_tools: "tools/"
+  results_path: "RESULTS/"
+  stats_path: "stats/"
+  logs_path: "logs/"
+  snakemake_log_path: ".snakemake/log/"
+  fastq_path: "fastq/"
+  conda_env: "RiboKastIndex.yaml"
+
+# -----------------------------------------------------------------
+#                      Reference Files
+# -----------------------------------------------------------------
+fasta: "human.fa"
+gff: "human.gff3"
+fasta_outRNA: "rRNA.fasta"
+
+# -----------------------------------------------------------------
+#                      Adapter Trimming Settings
+# -----------------------------------------------------------------
+already_trimmed: "no"
+adapt_sequence: ""
+
+# -----------------------------------------------------------------
+#                      Length Selection for Profiling
+# -----------------------------------------------------------------
+readsLength_min: "25"
+readsLength_max: "35"
+
+# -----------------------------------------------------------------
+#                      GFF File Settings
+# -----------------------------------------------------------------
+gff_cds_feature: "CDS"
+gff_mRNA_feature: "mRNA"
+gff_5UTR_feature: "five_prime_UTR"
+gff_parent_attribut: "Parent"
+gff_name_attribut: "Name"
+
+# -----------------------------------------------------------------
+#                      riboWaltz Analysis Settings
+# -----------------------------------------------------------------
+kmercount_pct_threshold: "60"
+
+# -----------------------------------------------------------------
+#                      K-mer Index Construction Settings
+# -----------------------------------------------------------------
+pathJoinCounts: "$PATH:/data/work/I2BC/safa.maddouri/tools/dekupl-joinCounts"
+
+kmerSize: "25"
+mode: "phase"          # normal | phase
+
+forced_phase: 12
+# forced_phase: null
+
+kamrat_normalize: true
+kamrat_nfbase: 1000000
+kamrat_unstrand: false
+
+kamratImg: "/store/EQUIPES/SSFA/MEMBERS/safa.maddouri/KaMRaT.sif"
