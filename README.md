@@ -266,7 +266,6 @@ kmer_index:
 kamrat:
   normalize: true
   nfbase: 1000000
-  unstranded: false
 
   # KaMRaT container image (Apptainer/Singularity)
   kamratImg: "/store/EQUIPES/SSFA/MEMBERS/safa.maddouri/KaMRaT.sif"
